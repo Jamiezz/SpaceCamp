@@ -11,6 +11,10 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
 
+// backend/app.js
+const routes = require('./routes');
+
+// ...
   // Set the _csrf token and create req.csrfToken method
 
   const { environment } = require('./config');
@@ -26,15 +30,6 @@ const isProduction = environment === 'production';
     })
   );
 
-
-
-
-
-// backend/app.js
-const routes = require('./routes');
-
-// ...
-
 app.use(routes); // Connect all the routes
 
 // Security Middleware
@@ -46,6 +41,34 @@ if (!isProduction) {
   app.use(helmet({
     contentSecurityPolicy: false
   }));
+
+
+
+
+
+
+  app.use((_req, _res, next) => {
+    const err = new Error("The requested resource couldn't be found.");
+    err.title = "Resource Not Found";
+    err.errors = ["The requested resource couldn't be found."];
+    err.status = 404;
+    next(err);
+  });
+
+// backend/app.js
+// ...
+// Error formatter
+app.use((err, _req, res, _next) => {
+  res.status(err.status || 500);
+  console.error(err);
+  res.json({
+    title: err.title || 'Server Error',
+    message: err.message,
+    errors: err.errors,
+    stack: isProduction ? null : err.stack,
+  });
+});
+
 
 
   module.exports = app;
