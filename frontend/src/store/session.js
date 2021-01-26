@@ -17,20 +17,42 @@ const removeUser = () => {
   };
 };
 
-export const login = (user) => async (dispatch) => {
-  const { credential, password } = user;
-  const response = await fetch('/api/session', {
-    method: 'POST',
-    body: JSON.stringify({
-      credential,
-      password,
-    }),
-  });
-  dispatch(setUser(response.data.user));
-  return response;
+export const login = (user) => {
+  return async (dispatch) => {
+    const { credential, password } = user;
+    const response = await fetch('/api/session', {
+      method: 'POST',
+      body: JSON.stringify({
+        credential,
+        password,
+      }),
+    });
+    dispatch(setUser(response.data.user));
+    return response;
+  }
+}
+
+// frontend/src/store/session.js
+// ...
+export const restoreUser = () => async dispatch => {
+  const res = await fetch('/api/session');
+  dispatch(setUser(res.data.user));
+  return res;
 };
+// ...
 
 const initialState = { user: null };
+
+// frontend/src/store/session.js
+// ...
+export const logout = () => async (dispatch) => {
+  const response = await fetch('/api/session', {
+    method: 'DELETE',
+  });
+  dispatch(removeUser());
+  return response;
+};
+// ...
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -48,15 +70,6 @@ const sessionReducer = (state = initialState, action) => {
   }
 };
 
-// frontend/src/store/session.js
-// ...
-export const logout = () => async (dispatch) => {
-  const response = await fetch('/api/session', {
-    method: 'DELETE',
-  });
-  dispatch(removeUser());
-  return response;
-};
-// ...
+
 
 export default sessionReducer;

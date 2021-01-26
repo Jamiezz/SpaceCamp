@@ -7,6 +7,10 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const { requireAuth, setTokenCookie, restoreUser } = require('../../utils/auth.js');
 
+
+router.use('/session', sessionRouter);
+
+router.use('/users', usersRouter);
 // backend/routes/api/index.js
 
 
@@ -52,9 +56,7 @@ router.get(
 
 // ...
 
-router.use('/session', sessionRouter);
 
-router.use('/users', usersRouter);
 
 
 module.exports = router
