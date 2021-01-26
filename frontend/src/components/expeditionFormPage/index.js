@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import './ArticleInput.css';
+import './expeditionFormPage.css'
 
 const ExpeditionInput = () => {
   const [title, setTitle] = useState('');
@@ -33,4 +33,4 @@ const ExpeditionInput = () => {
     </div>
   );
 };
-export default ArticleInput;
+export default ExpeditionInput;
