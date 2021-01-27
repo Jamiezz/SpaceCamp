@@ -23,6 +23,12 @@ function App() {
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
+          <Route path="/map">
+            <ExpeditionFormPage />
+          </Route>
+          <Route path="/login">
+            <LoginFormPage />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>

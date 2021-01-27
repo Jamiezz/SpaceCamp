@@ -1,10 +1,23 @@
-import { useState } from 'react';
-import { nanoid } from 'nanoid';
+import { useState, useEffect } from 'react';
 import './expeditionFormPage.css'
+import { fetch } from '../../store/csrf'
 
 const ExpeditionInput = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [map, setMap] = useState('');
+
+  useEffect(() => {
+    homeFetch()
+  }, [])
+
+async function homeFetch() {
+  const res = await fetch("/api/map")
+  if(res.ok) {
+    let data = await res.data
+    setMap(data)
+  }
+}
 
   const handleSubmit = (e) => {
     console.log('handleSubmit clicked');
