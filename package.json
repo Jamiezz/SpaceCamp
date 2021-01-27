@@ -23,5 +23,11 @@
   "bugs": {
     "url": "https://github.com/Jamiezz/reactProjectBackbone/issues"
   },
-  "homepage": "https://github.com/Jamiezz/reactProjectBackbone#readme"
+  "homepage": "https://github.com/Jamiezz/reactProjectBackbone#readme",
+  "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.35",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+  }
 }

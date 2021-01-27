@@ -1,0 +1,29 @@
+h1 {
+    color: #AF3800;
+}
+
+.color {
+    background-color: #D3F3EE;
+    padding: 1em;
+}
+
+.button {
+   padding: 1em;
+   border-radius: 6px;
+   width: 10em;
+   text-emphasis-color: #AF3800;
+}
+
+.button:hover {
+    transition-duration: .2s;
+    background-color: #F04A00;
+    box-shadow: 0 6px 8px 0 #000000;
+}
+
+.textField {
+    width: 90%;
+}
+
+.textField:focus {
+    border: 3px solid #555;
+}
